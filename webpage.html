@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGS Giyim - Endüstriyel Çözümler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- TEMEL AYARLAR --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #030411; /* Resimdeki en koyu tona çok yakın bir renk */
+            color: #ffffff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- ARKA PLAN SİHİRLERİ --- */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .shape-1 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(148, 163, 184, 0.07) 0%, rgba(3, 4, 17, 0) 70%);
+            transform: rotate(-30deg);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        .shape-2 {
+            position: absolute;
+            bottom: -30%;
+            right: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, rgba(3, 4, 17, 0) 60%);
+            transform: rotate(45deg);
+        }
+        .shape-3 {
+            position: absolute;
+            top: 50%;
+            left: -50%;
+            width: 200%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(-15deg);
+        }
+
+        /* --- HERO (ORTA KISIM) --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* LOGO STİLİ - GÜNCELLENDİ (MASKELEME TEKNİĞİ) */
+        .hero-logo-link {
+            display: inline-block;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Logonun etrafında yumuşak bir geçiş alanı oluşturur */
+            padding: 20px; 
+        }
+
+        .hero-logo-img {
+            max-width: 500px;
+            width: 90%; 
+            height: auto;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            
+            /* SİHİRLİ KOD BURASI: Kenarları yumuşatarak siler */
+            /* Bu sayede ton farkı olsa bile keskin çizgi oluşmaz */
+            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%);
+            mask-image: radial-gradient(circle, black 50%, transparent 95%);
+        }
+
+        .hero-logo-link:hover .hero-logo-img {
+            transform: scale(1.05);
+            filter: brightness(1.2); /* Parlama efekti */
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        p.subtitle {
+            font-size: 2.3rem;
+            color: #94a3b8;
+            margin-top: 0px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .btn-contact {
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 50px;
+            background-color: #e2e8f0;
+            color: #030411;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 2px;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            letter-spacing: 1px;
+        }
+        .btn-contact:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(255,255,255,0.3);
+        }
+
+        /* --- HİZMETLER --- */
+        .services-section {
+            padding: 50px 10%;
+            position: relative;
+            z-index: 10;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            display: block;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .service-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+        }
+        .service-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        .service-card p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* --- GİZLİ İLETİŞİM --- */
+        .contact-section {
+            display: none;
+            background: rgba(3, 4, 17, 0.95);
+            padding: 60px 10%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 20;
+            backdrop-filter: blur(20px);
+            animation: fadeIn 0.8s ease-out;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .info-box {
+            background: rgba(255,255,255,0.03);
+            padding: 30px;
+            border-left: 2px solid #94a3b8;
+        }
+        .info-box h3 {
+            color: #64748b;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .info-box p { font-size: 1rem; margin-bottom: 8px; color: #cbd5e1; }
+
+        @media (max-width: 768px) {
+            .hero { height: 60vh; }
+            .hero-logo-img { max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shapes">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        <div class="shape-3"></div>
+    </div>
+
+    <section class="hero">
+        
+        <a href="#" class="hero-logo-link">
+            <img src="logo.jpg" alt="AGS Giyim Logosu" class="hero-logo-img">
+        </a>
+        
+        <p class="subtitle">Giyim Sanayi</p>
+        <a onclick="showContactInfo()" class="btn-contact">İLETİŞİME GEÇ</a>
+    </section>
+
+    <section class="services-section">
+        <div style="text-align: center;">
+            <span class="section-title">ÇALIŞMA ALANLARIMIZ</span>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🦺</div>
+                <h2>İş Elbiseleri</h2>
+                <p>Pantolon, önlük ve mont gibi ürünler başta olmak üzere iş güvenliği standartlarına uygun kurumsal kıyafet üretimi.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🦾</div>
+                <h2>Robot Elbiseleri</h2>
+                <p>Endüstriyel robot kolları için boya, toz ve hatta elektriklenmeye karşı özel koruyucu kılıf çözümleri.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💧</div>
+                <h2>Endüstriyel Yağ Çözümleri</h2>
+                <p>Farklı sıcaklık ve basınç şartlarına dayanıklı, farklı kullanım amaçlarına uygun endüstriyel yağ tedariği.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="info-box">
+                <h3>ADRES</h3>
+                <p>Bağlarbaşı Mahallesi</p>
+                <p>2. Nilüfer Cadde - No: 25</p>
+                <p>Osmangazi / Bursa</p>
+            </div>
+            <div class="info-box">
+                <h3>İLETİŞİM</h3>
+                <p>+90 (532) 765 76 77</p>
+                <p>agsgiyim.fatihaltun@hotmail.com</p>
+            </div>
+            <div class="info-box">
+                <h3>KONUM</h3>
+                <p><a href="https://maps.app.goo.gl/hwNop73rL1oWNhN96" style="color: white; text-decoration: underline;">Google Haritalarda Aç &rarr;</a></p>
+            </div>
+        </div>
+        <footer style="text-align: center; padding-top: 40px; color: #475569; font-size: 0.8rem;">
+            &copy; 2025 AGS Giyim. Tüm hakları saklıdır.
+        </footer>
+    </section>
+
+    <script>
+        function showContactInfo() {
+            var section = document.getElementById("contact");
+            section.style.display = "block";
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+
+</body>
+</html>
