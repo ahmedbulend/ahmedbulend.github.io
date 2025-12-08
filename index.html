@@ -11,13 +11,12 @@
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #0B1120; /* Resimdeki en koyu tona çok yakın bir renk */
+            background-color: #0B1120;
             color: #ffffff;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* --- ARKA PLAN SİHİRLERİ --- */
         .bg-shapes {
             position: fixed;
             top: 0;
@@ -57,7 +56,7 @@
         }
 
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -71,21 +70,21 @@
         .hero-logo-link {
             display: inline-block;
             animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            padding: 20px; 
+            padding: 10px; 
         }
 
-	.hero-logo-img {
+        .hero-logo-img {
             max-width: 500px;
             width: 90%; 
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             transition: transform 0.3s ease;
             cursor: pointer;
         }
 
         .hero-logo-link:hover .hero-logo-img {
             transform: scale(1.05);
-            filter: brightness(1.2); /* Parlama efekti */
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
         }
 
         @keyframes popIn {
@@ -94,17 +93,17 @@
         }
 
         p.subtitle {
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             color: #cbd5e1;
             margin-top: 0px;
             font-weight: 300;
             letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
         .btn-contact {
             cursor: pointer;
             display: inline-block;
-            margin-top: 40px;
             padding: 15px 50px;
             background-color: #e2e8f0;
             color: #030411;
@@ -114,6 +113,7 @@
             transition: 0.3s;
             box-shadow: 0 0 20px rgba(255,255,255,0.1);
             letter-spacing: 1px;
+            border: none; /* Buton border temizliği */
         }
         .btn-contact:hover {
             background-color: #fff;
@@ -121,20 +121,44 @@
             box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
 
+        .btn-next-step {
+            background-color: transparent;
+            border: 2px solid #e2e8f0;
+            color: #e2e8f0;
+            margin-top: 50px;
+        }
+        .btn-next-step:hover {
+            background-color: #e2e8f0;
+            color: #030411;
+        }
 
         .services-section {
-            padding: 50px 10%;
+            display: none; 
+            padding: 80px 10%;
             position: relative;
             z-index: 10;
+            background: rgba(11, 17, 32, 0.6);
+            animation: slideUp 0.8s ease-out;
         }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .section-title {
             text-align: center;
-            font-size: 0.8rem;
-            color: #64748b;
+            font-size: 0.9rem;
+            color: #94a3b8;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .services-grid {
             display: grid;
@@ -150,6 +174,7 @@
             transition: 0.3s;
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
         }
         .service-card:hover {
             background: rgba(255, 255, 255, 0.05);
@@ -174,7 +199,6 @@
             line-height: 1.6;
         }
 
-
         .contact-section {
             display: none;
             background: rgba(3, 4, 17, 0.95);
@@ -183,13 +207,7 @@
             position: relative;
             z-index: 20;
             backdrop-filter: blur(20px);
-            animation: fadeIn 0.8s ease-out;
-            margin-top: 50px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: slideUp 1s ease-out;
         }
 
         .contact-container {
@@ -216,7 +234,6 @@
         .info-box p { font-size: 1rem; margin-bottom: 8px; color: #cbd5e1; }
 
         @media (max-width: 768px) {
-            .hero { height: 60vh; }
             .hero-logo-img { max-width: 300px; }
         }
     </style>
@@ -230,16 +247,16 @@
     </div>
 
     <section class="hero">
-        
         <a href="#" class="hero-logo-link">
             <img src="logo.png" alt="AGS Giyim Logosu" class="hero-logo-img">
         </a>
         
-        <p class="subtitle">Giyim Sanayi</p>
-        <a onclick="showContactInfo()" class="btn-contact">İLETİŞİME GEÇ</a>
+        <p class="subtitle">Giyim Sanayi & Endüstriyel Çözümler</p>
+        
+        <a onclick="showServices()" class="btn-contact">ÇALIŞMA ALANLARIMIZ</a>
     </section>
 
-    <section class="services-section">
+    <section id="services" class="services-section">
         <div style="text-align: center;">
             <span class="section-title">ÇALIŞMA ALANLARIMIZ</span>
         </div>
@@ -261,6 +278,10 @@
                 <p>Farklı sıcaklık ve basınç şartlarına dayanıklı, farklı kullanım amaçlarına uygun endüstriyel yağ tedariği.</p>
             </div>
         </div>
+
+        <div style="text-align: center;">
+            <a onclick="showContact()" class="btn-contact btn-next-step">İLETİŞİM &darr;</a>
+        </div>
     </section>
 
     <section id="contact" class="contact-section">
@@ -278,22 +299,29 @@
             </div>
             <div class="info-box">
                 <h3>KONUM</h3>
-                <p><a href="https://maps.app.goo.gl/hwNop73rL1oWNhN96" style="color: white; text-decoration: underline;">Google Haritalarda Aç &rarr;</a></p>
+                <p><a href="https://maps.app.goo.gl/hwNop73rL1oWNhN96" target="_blank" style="color: white; text-decoration: underline;">Google Haritalarda Aç →</a></p>
             </div>
         </div>
         <footer style="text-align: center; padding-top: 40px; color: #475569; font-size: 0.8rem;">
-            &copy; 2025 AGS Giyim. Tüm hakları saklıdır.
+            © 2025 AGS Giyim. Tüm hakları saklıdır.
         </footer>
     </section>
 
     <script>
-        function showContactInfo() {
-            var section = document.getElementById("contact");
-            section.style.display = "block";
-            section.scrollIntoView({ behavior: "smooth" });
+        function showServices() {
+            var services = document.getElementById("services");
+            services.style.display = "block";
+            // Yumuşakça oraya kaydır
+            services.scrollIntoView({ behavior: "smooth" });
+        }
+
+        function showContact() {
+            var contact = document.getElementById("contact");
+            contact.style.display = "block";
+            // Yumuşakça oraya kaydır
+            contact.scrollIntoView({ behavior: "smooth" });
         }
     </script>
 
 </body>
 </html>
-
