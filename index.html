@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- TEMEL AYARLAR --- */
         body, html {
             margin: 0;
             padding: 0;
@@ -57,7 +56,6 @@
             transform: rotate(-15deg);
         }
 
-        /* --- HERO (ORTA KISIM) --- */
         .hero {
             height: 80vh;
             display: flex;
@@ -70,26 +68,19 @@
             z-index: 10;
         }
 
-        /* LOGO STİLİ - GÜNCELLENDİ (MASKELEME TEKNİĞİ) */
         .hero-logo-link {
             display: inline-block;
             animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            /* Logonun etrafında yumuşak bir geçiş alanı oluşturur */
             padding: 20px; 
         }
 
-        .hero-logo-img {
+	.hero-logo-img {
             max-width: 500px;
             width: 90%; 
             height: auto;
             margin-bottom: 20px;
             transition: transform 0.3s ease;
             cursor: pointer;
-            
-            /* SİHİRLİ KOD BURASI: Kenarları yumuşatarak siler */
-            /* Bu sayede ton farkı olsa bile keskin çizgi oluşmaz */
-            -webkit-mask-image: radial-gradient(circle, black 50%, transparent 95%);
-            mask-image: radial-gradient(circle, black 50%, transparent 95%);
         }
 
         .hero-logo-link:hover .hero-logo-img {
@@ -130,7 +121,7 @@
             box-shadow: 0 0 40px rgba(255,255,255,0.3);
         }
 
-        /* --- HİZMETLER --- */
+
         .services-section {
             padding: 50px 10%;
             position: relative;
@@ -183,7 +174,7 @@
             line-height: 1.6;
         }
 
-        /* --- GİZLİ İLETİŞİM --- */
+
         .contact-section {
             display: none;
             background: rgba(3, 4, 17, 0.95);
@@ -305,6 +296,4 @@
 
 </body>
 </html>
-
-
 
